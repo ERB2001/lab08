@@ -14,7 +14,7 @@ public class Controller {
     public String fileName() {
         String path = System.getProperty("user.home")
                 + File.separator
-                + Controller.class.getSimpleName() + ".txt";
+                + "output.txt";
         return path;
     }
 
