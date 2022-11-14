@@ -21,7 +21,9 @@ public class UseController {
          */
         Controller controller = new Controller();
         controller.fileName();
-        String s = new String("Aiutooooo");
+        System.out.println(controller.getPath());
+        // System.out.println(controller.getAbsolutePath());
+        String s = new String("Nuovo Tentativo");
         controller.saveInFile(s);
     }
 }

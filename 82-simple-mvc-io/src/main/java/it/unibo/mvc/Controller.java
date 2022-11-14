@@ -18,28 +18,36 @@ public class Controller {
         return path;
     }
 
-    public boolean fileExists(File f) {
-        if (f.exists()) {
-            return true;
-        } else {
-            return false;
-        }
+    public File fileCreation() {
+        File file = new File(fileName());
+        return file;
     }
 
-    public String getPath(File f) {
-        return f.getPath();
+    /*
+     * public boolean fileExists(File f) {
+     * if (f.exists()) {
+     * return true;
+     * } else {
+     * return false;
+     * }
+     * }
+     */
+
+    public String getPath() {
+        return fileCreation().getPath();
     }
 
-    public String getAbsolutePath(File f) {
-        return f.getAbsolutePath();
-    }
+    /*
+     * public String getAbsolutePath() {
+     * return fileCreation().getAbsolutePath();
+     * }
+     */
 
     public void saveInFile(String s) {
         try (PrintStream ps = new PrintStream(fileName(), StandardCharsets.UTF_8)) {
             ps.print(s);
         } catch (IOException e1) {
-            e1.printStackTrace();
+            e1.printStackTrace(); // NOPMD: allowed as this is just an exercise
         }
     }
-
 }
