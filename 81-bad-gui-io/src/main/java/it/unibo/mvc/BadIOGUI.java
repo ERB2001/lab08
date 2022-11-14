@@ -21,7 +21,8 @@ import java.util.Random;
 /**
  * This class is a simple application that writes a random number on a file.
  * 
- * This application does not exploit the model-view-controller pattern, and as
+ * This application does not exploit(non sfrutta) the model-view-controller
+ * pattern, and as
  * such is just to be used to learn the basics, not as a template for your
  * applications.
  */
@@ -39,10 +40,29 @@ public class BadIOGUI {
      * Creates a new BadIOGUI.
      */
     public BadIOGUI() {
+        // prof JPanel
         final JPanel canvas = new JPanel();
         canvas.setLayout(new BorderLayout());
+
+        // Ex01.01) My JPanel
+        final JPanel myCanvas = new JPanel();
+        myCanvas.setLayout(new BoxLayout(myCanvas, BoxLayout.X_AXIS));
+
         final JButton write = new JButton("Write on file");
-        canvas.add(write, BorderLayout.CENTER);
+
+        // Ex01.02) Create a new button
+        final JButton read = new JButton("Read on file");
+
+        // Ex01.01) add the "write" button to my JPanel
+        myCanvas.add(write);
+
+        // Ex01.02) add the "read" button to my JPanel
+        myCanvas.add(read);
+
+        // Ex01.01) add the new Panel at the last panel
+        canvas.add(myCanvas, BorderLayout.CENTER);
+
+        // canvas.add(write, BorderLayout.CENTER);
         frame.setContentPane(canvas);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         /*
@@ -66,6 +86,15 @@ public class BadIOGUI {
                 }
             }
         });
+
+        read.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                // TODO Auto-generated method stub
+                System.out.println("A string");
+            }
+        });
     }
 
     private void display() {
@@ -77,10 +106,15 @@ public class BadIOGUI {
          * issue). It is MUCH better than manually specify the size of a window
          * in pixel: it takes into account the current resolution.
          */
-        final Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-        final int sw = (int) screen.getWidth();
-        final int sh = (int) screen.getHeight();
-        frame.setSize(sw / PROPORTION, sh / PROPORTION);
+
+        // final Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+        // final int sw = (int) screen.getWidth();
+        // final int sh = (int) screen.getHeight();
+        // frame.setSize(sw / PROPORTION, sh / PROPORTION);
+
+        // Ex01.01) Use the Method .pack to resize the frame to the minimum size prior
+        // to displaying
+        frame.pack();
         /*
          * Instead of appearing at (0,0), upper left corner of the screen, this
          * flag makes the OS window manager take care of the default positioning
@@ -99,6 +133,6 @@ public class BadIOGUI {
      * @param args ignored
      */
     public static void main(final String... args) {
-       new BadIOGUI().display();
+        new BadIOGUI().display();
     }
 }
