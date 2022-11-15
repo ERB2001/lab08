@@ -29,16 +29,21 @@ public final class SimpleGUIWithFileChooser {
         JPanel canvas = new JPanel();
         canvas.setLayout(new BorderLayout());
 
-        canvas.add(field, BorderLayout.NORTH);
+        JPanel secondCanvas = new JPanel();
 
-        JPanel myCanvas = new JPanel();
-        myCanvas.setLayout(new BorderLayout());
+        secondCanvas.setLayout(new BorderLayout());
 
-        JButton browse = new JButton("Browse");
+        JButton save = new JButton("Save");
 
-        myCanvas.add(browse, BorderLayout.NORTH);
+        canvas.add(save, BorderLayout.SOUTH);
 
-        canvas.add(myCanvas);
+        JButton browse = new JButton("Browse...");
+
+        secondCanvas.add(field, BorderLayout.CENTER);
+
+        secondCanvas.add(browse, BorderLayout.LINE_END);
+
+        canvas.add(secondCanvas, BorderLayout.NORTH);
 
         frame.add(canvas);
 
