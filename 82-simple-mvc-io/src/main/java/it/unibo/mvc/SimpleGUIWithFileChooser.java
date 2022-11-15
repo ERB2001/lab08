@@ -47,7 +47,9 @@ public final class SimpleGUIWithFileChooser {
 
         JButton browse = new JButton("Browse...");
 
-        JFileChooser chooser = new JFileChooser();
+        Controller controller = new Controller();
+
+        field.setText(controller.getPath());
 
         secondCanvas.add(field, BorderLayout.CENTER);
 
@@ -85,12 +87,13 @@ public final class SimpleGUIWithFileChooser {
             @Override
             public void actionPerformed(ActionEvent arg0) {
                 // TODO Auto-generated method stub
+                JFileChooser chooser = new JFileChooser();
+
                 int result = chooser.showSaveDialog(frame);
 
                 JDialog dialog = new JDialog();
 
                 if (result == JFileChooser.APPROVE_OPTION) {
-                    Controller controller = new Controller();
                     // File file = new File("output.txt");
                     controller.setFile(chooser.getSelectedFile());
                     field.setText(controller.getPath());
