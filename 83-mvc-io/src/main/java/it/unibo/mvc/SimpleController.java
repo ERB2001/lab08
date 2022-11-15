@@ -23,7 +23,7 @@ public final class SimpleController implements Controller {
 
     String currentString;
 
-    String nextString;
+    List<String> nextString;
 
     public SimpleController(String s) {
         currentString = s;
@@ -36,12 +36,17 @@ public final class SimpleController implements Controller {
      * and an exception should be produced
      */
     public void setNextString(String s) {
-        nextString = s;
+        nextString = new ArrayList<>();
+        nextString.add(s);
     }
 
     /* A method for getting the next string to print */
-    public String getNextString(String s) {
-        return nextString;
+    public List<String> getNextString() {
+        List<String> lines = new ArrayList<String>();
+        for (String s2 : nextString) {
+            lines.add(s2);
+        }
+        return lines;
     }
 
     /*
@@ -72,11 +77,13 @@ public final class SimpleController implements Controller {
 
     }
 
-    public void saveInFile(String nextString) {
+    public void saveInFile(String[] prova) {
 
         try (PrintStream ps = new PrintStream(FILENAME, StandardCharsets.UTF_8)) {
             ps.append(currentString);
-            ps.append(nextString);
+            for (String s : prova) {
+                ps.append(s);
+            }
             ps.close();
         } catch (IOException e1) {
             e1.printStackTrace(); // NOPMD: allowed as this is just an exercise
@@ -94,23 +101,18 @@ public final class SimpleController implements Controller {
     }
 
     public static void main(String[] args) {
-        String currentString = new String("Ciao");
-        String nextString = new String("Come stai?");
-        String nextString2 = new String("Tutto Bene");
-        SimpleController sc = new SimpleController(currentString);
-        System.out.println(sc.toString());
-        sc.setNextString(nextString);
-        System.out.println(sc.getNextString(nextString));
-        sc.setNextString(nextString2);
-        System.out.println(sc.getNextString(nextString2));
-        sc.saveInFile(nextString2);
-        sc.saveInFile(nextString);
-        // String[] nextString = new String[] { "Come state?", "Tutto bene" };
-        // sc.setNextString(nextString[0]);
-        // sc.setNextString(nextString[1]);
-        // sc.saveInFile(nextString[0]);
-        // sc.saveInFile(nextString[1]);
-        System.out.println(sc.getPrintedElementHistory());
+        String current = new String("Ciao");
+        String nextString1 = new String("a tutti");
+        String nextString2 = new String("come");
+        SimpleController controller = new SimpleController(current);
+        controller.setNextString(nextString1);
+        System.out.println(controller.getNextString());
+        controller.setNextString(nextString2);
+        System.out.println(controller.getNextString());
+        String[] prova = new String[] { "Ciao", "Come stai?", "Tutto bene" };
+        controller.saveInFile(prova);
+        System.out.println(controller.getPrintedElementHistory());
+
     }
 }
 /*

@@ -15,7 +15,7 @@ public interface Controller {
     void setNextString(String s);
 
     /* A method for getting the next string to print */
-    String getNextString(String s);
+    List<String> getNextString();
 
     /*
      * A method for getting the history of
