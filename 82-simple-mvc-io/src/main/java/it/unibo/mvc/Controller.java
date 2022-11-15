@@ -6,48 +6,58 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
 
-/**
- * Application controller. Performs the I/O.
- */
 public class Controller {
 
-    public String fileName() {
-        String path = System.getProperty("user.home")
-                + File.separator
-                + "output.txt";
-        return path;
+    private final static String fileName = System.getProperty("user.home")
+            + System.getProperty("file.separator")
+            + "output.txt";
+
+    private File file;
+
+    public Controller() {
+        this.file = new File(fileName);
     }
 
-    public File fileCreation() {
-        File file = new File(fileName());
+    public Controller(File f) {
+        this.file = f;
+    }
+
+    public void setFile(File f) {
+        file = f;
+    }
+
+    public File getFile() {
         return file;
     }
 
-    /*
-     * public boolean fileExists(File f) {
-     * if (f.exists()) {
-     * return true;
-     * } else {
-     * return false;
-     * }
-     * }
-     */
-
     public String getPath() {
-        return fileCreation().getPath();
+        return file.getPath();
     }
 
-    /*
-     * public String getAbsolutePath() {
-     * return fileCreation().getAbsolutePath();
-     * }
-     */
-
     public void saveInFile(String s) {
-        try (PrintStream ps = new PrintStream(fileName(), StandardCharsets.UTF_8)) {
-            ps.print(s);
+        /*
+         * try (FileWriter fw = new FileWriter(fileName)) {
+         * fw.append(s);
+         * } catch (IOException e1) {
+         * e1.printStackTrace();
+         * }
+         */
+
+        /*
+         * try {
+         * FileWriter fw = new FileWriter(fileName);
+         * fw.append(s);
+         * } catch (IOException e) {
+         * // TODO Auto-generated catch block
+         * e.printStackTrace();
+         * }
+         */
+
+        try (PrintStream ps = new PrintStream(fileName, StandardCharsets.UTF_8)) {
+            ps.append(s);
         } catch (IOException e1) {
-            e1.printStackTrace(); // NOPMD: allowed as this is just an exercise
+            e1.printStackTrace();
         }
+
     }
 }

@@ -19,11 +19,22 @@ public class UseController {
          * }
          * }
          */
+        /*
+         * Controller controller = new Controller();
+         * controller.fileName();
+         * System.out.println(controller.getPath());
+         * // System.out.println(controller.getAbsolutePath());
+         * File file = new File(controller.fileName());
+         * controller.setFile(file);
+         * String s = new String("Nuovo Tentativo");
+         * controller.saveInFile(s);
+         */
+        File file = new File("File1.txt");
         Controller controller = new Controller();
-        controller.fileName();
-        System.out.println(controller.getPath());
-        // System.out.println(controller.getAbsolutePath());
-        String s = new String("Nuovo Tentativo");
+        String s = new String("Nuovo");
         controller.saveInFile(s);
+        System.out.println(controller.getPath());
+        String s2 = new String("Nuovo3");
+        controller.saveInFile(s2);
     }
 }
