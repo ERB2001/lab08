@@ -8,7 +8,7 @@ import java.nio.charset.StandardCharsets;
 
 public class Controller {
 
-    private String FILENAME = System.getProperty("user.home")
+    private final String FILENAME = System.getProperty("user.home")
             + System.getProperty("file.separator")
             + "output.txt";
 

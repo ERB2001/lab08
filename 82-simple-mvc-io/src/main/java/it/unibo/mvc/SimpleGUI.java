@@ -30,6 +30,10 @@ public final class SimpleGUI {
 
     private static final int PROPORTION = 5;
 
+    protected static final String PATH = System.getProperty("user.home")
+            + File.separator
+            + "output.txt";
+
     private final JFrame frame = new JFrame();
 
     private final JTextArea textArea = new JTextArea();
@@ -48,7 +52,20 @@ public final class SimpleGUI {
         canvas.add(save, BorderLayout.SOUTH);
         canvas.add(textArea, BorderLayout.CENTER);
 
+        // frame.setContentPane(canvas);
         frame.add(canvas);
+
+        save.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                // TODO Auto-generated method stub
+
+                Controller controller = new Controller();
+                controller.saveInFile(textArea.getText());
+
+            }
+        });
     }
 
     public void display() {
