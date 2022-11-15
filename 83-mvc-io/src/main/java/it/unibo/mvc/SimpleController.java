@@ -28,6 +28,7 @@ public final class SimpleController implements Controller {
     public SimpleController(String s) {
         currentString = s;
         file = new File(FILENAME);
+        nextString = new ArrayList<>();
     }
 
     /*
@@ -36,7 +37,6 @@ public final class SimpleController implements Controller {
      * and an exception should be produced
      */
     public void setNextString(String s) {
-        nextString = new ArrayList<>();
         nextString.add(s);
     }
 
@@ -77,11 +77,11 @@ public final class SimpleController implements Controller {
 
     }
 
-    public void saveInFile(String[] prova) {
+    public void saveInFile() {
 
         try (PrintStream ps = new PrintStream(FILENAME, StandardCharsets.UTF_8)) {
             ps.append(currentString);
-            for (String s : prova) {
+            for (String s : nextString) {
                 ps.append(s);
             }
             ps.close();
@@ -109,8 +109,8 @@ public final class SimpleController implements Controller {
         System.out.println(controller.getNextString());
         controller.setNextString(nextString2);
         System.out.println(controller.getNextString());
-        String[] prova = new String[] { "Ciao", "Come stai?", "Tutto bene" };
-        controller.saveInFile(prova);
+        // String[] prova = new String[] { "Ciao", "Come stai?", "Tutto bene" };
+        controller.saveInFile();
         System.out.println(controller.getPrintedElementHistory());
 
     }
