@@ -11,6 +11,12 @@ import java.nio.charset.StandardCharsets;
  */
 public class Controller {
 
+    private File file;
+
+    public Controller() {
+        file = new File(fileName());
+    }
+
     public String fileName() {
         String path = System.getProperty("user.home")
                 + File.separator
@@ -18,10 +24,12 @@ public class Controller {
         return path;
     }
 
+    /*
     public File fileCreation() {
         File file = new File(fileName());
         return file;
     }
+    */
 
     /*
      * public boolean fileExists(File f) {
@@ -33,8 +41,16 @@ public class Controller {
      * }
      */
 
+    public void setFile(File f) {
+       file = f; //settaggio del file dandogli un altro nome
+    }
+
+    public File getFile() {
+        return file;
+    }
+
     public String getPath() {
-        return fileCreation().getPath();
+        return file.getPath();
     }
 
     /*
@@ -47,7 +63,7 @@ public class Controller {
         try (PrintStream ps = new PrintStream(fileName(), StandardCharsets.UTF_8)) {
             ps.print(s);
         } catch (IOException e1) {
-            e1.printStackTrace(); // NOPMD: allowed as this is just an exercise
+            e1.printStackTrace(); 
         }
     }
 }
