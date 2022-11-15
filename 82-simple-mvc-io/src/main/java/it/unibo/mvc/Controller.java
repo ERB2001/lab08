@@ -8,51 +8,29 @@ import java.nio.charset.StandardCharsets;
 
 public class Controller {
 
-    public String fileName() {
-        String path = System.getProperty("user.home")
-                + File.separator
-                + "output.txt";
-        return path;
+    private String FILENAME = System.getProperty("user.home")
+            + System.getProperty("file.separator")
+            + "output.txt";
+
+    File file;
+
+    public Controller() {
+        file = new File(FILENAME);
     }
 
-    public File fileCreation() {
-        File file = new File(fileName());
-        return file;
+    public void setFile(File file) {
+        this.file = file;
     }
-    */
 
-    /*
-     * public boolean fileExists(File f) {
-     * if (f.exists()) {
-     * return true;
-     * } else {
-     * return false;
-     * }
-     * }
-     */
+    public File getFile() {
+        return this.file;
+    }
 
     public String getPath() {
-        return fileCreation().getPath();
+        return file.getPath();
     }
 
     public void saveInFile(String s) {
-        /*
-         * try (FileWriter fw = new FileWriter(fileName)) {
-         * fw.append(s);
-         * } catch (IOException e1) {
-         * e1.printStackTrace();
-         * }
-         */
-
-        /*
-         * try {
-         * FileWriter fw = new FileWriter(fileName);
-         * fw.append(s);
-         * } catch (IOException e) {
-         * // TODO Auto-generated catch block
-         * e.printStackTrace();
-         * }
-         */
 
         try (PrintStream ps = new PrintStream(fileName, StandardCharsets.UTF_8)) {
             ps.append(s);
