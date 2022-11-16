@@ -8,6 +8,8 @@ import javax.swing.JTextField;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.BorderLayout;
 
 /**
@@ -30,6 +32,7 @@ public final class SimpleGUI {
         canvas.setLayout(new BorderLayout());
 
         JTextField textField = new JTextField();
+        textField.setEditable(false);
 
         canvas.add(textField, BorderLayout.NORTH);
 
@@ -50,6 +53,19 @@ public final class SimpleGUI {
         canvas.add(secondCanvas, BorderLayout.SOUTH);
 
         frame.add(canvas);
+
+        print.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                // TODO Auto-generated method stub
+                SimpleController controller = new SimpleController();
+                controller.setNextString(textArea.getText());
+                controller.printString();
+                textField.setText(controller.getNextString());
+                textField.getText();
+            }
+        });
 
     }
 
