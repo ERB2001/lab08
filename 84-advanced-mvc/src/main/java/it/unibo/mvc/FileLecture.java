@@ -39,7 +39,7 @@ public class FileLecture {
                         confBuilder.setMax(value);
                     } else if (lines[0].contains("minimum")) {
                         confBuilder.setMin(value);
-                    } else if (lines[0].contains("attemps")) {
+                    } else if (lines[0].contains("attempts")) {
                         confBuilder.setAttempts(value);
                     }
                 } else {
@@ -57,6 +57,12 @@ public class FileLecture {
         }
 
     }
+
+    /*
+     * public Configuration.Builder getConfigurtionBuilder() {
+     * return this.confBuilder;
+     * }
+     */
 
     public Configuration getConfiguration() {
         return this.conf;

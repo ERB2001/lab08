@@ -14,14 +14,15 @@ public final class DrawNumberApp implements DrawNumberViewObserver {
      * private static final int ATTEMPTS = 10;
      */
 
-    private final DrawNumber model;
+    private DrawNumber model;
     private final List<DrawNumberView> views;
 
     /**
      * @param views
      *              the views to attach
+     * @throws FileNotFoundException
      */
-    public DrawNumberApp(final DrawNumberView... views) {
+    public DrawNumberApp(final DrawNumberView... views) throws FileNotFoundException {
         /*
          * Side-effect proof
          */
