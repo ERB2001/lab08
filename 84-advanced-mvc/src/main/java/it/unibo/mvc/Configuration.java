@@ -1,16 +1,17 @@
 package it.unibo.mvc;
 
+import java.io.FileNotFoundException;
 
 /**
  * Encapsulates the concept of configuration.
  */
 public final class Configuration {
 
-    private final int max; 
+    private final int max;
     private final int min;
     private final int attempts;
 
-    private Configuration(final int max, final int min, final int attempts) {
+    private Configuration(final int max, final int min, final int attempts) throws FileNotFoundException {
         this.max = max;
         this.min = min;
         this.attempts = attempts;
@@ -63,7 +64,7 @@ public final class Configuration {
      */
     public static class Builder {
 
-        private static final int MIN = 0;
+        private static final int MIN = 5;
         private static final int MAX = 100;
         private static final int ATTEMPTS = 10;
 
@@ -101,8 +102,10 @@ public final class Configuration {
 
         /**
          * @return a configuration
+         * @throws FileNotFoundException
          */
-        public final Configuration build() {
+
+        public final Configuration build() throws FileNotFoundException {
             if (consumed) {
                 throw new IllegalStateException("The builder can only be used once");
             }
@@ -111,4 +114,3 @@ public final class Configuration {
         }
     }
 }
-
